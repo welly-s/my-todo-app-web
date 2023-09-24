@@ -3,6 +3,7 @@ import functions
 
 todos = functions.get_todos()
 
+st.set_page_config(layout='wide')
 def add_todo():
     todo = st.session_state["new_todo"]  # key of st.text_input
     todos.append(todo + '\n')
@@ -10,7 +11,9 @@ def add_todo():
 
 st.title("My Todo App")
 st.subheader("This is my todo app")
-st.write("This app is to increase your productivity")
+#st.write("This app is to increase your productivity")
+st.write("This app is to increase your <b>productivity<b>",
+         unsafe_allow_html= True)
 
 for index, todo in enumerate(todos):
     checkbox = st.checkbox(todo, key=todo)   # so that each todo would have unique key
@@ -25,7 +28,7 @@ for index, todo in enumerate(todos):
 st.text_input(label="Enter a todo: ", placeholder="Add new todo...",
               on_change=add_todo, key='new_todo')
 
-st.session_state  # this is to see what session state is
+# st.session_state  # this is to see what session state is
 
 
 #to run the web-app, key in the following in the terminal
